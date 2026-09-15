@@ -5,7 +5,7 @@
   const faqItems = document.querySelectorAll(".faq-item");
   const reveals = document.querySelectorAll(".reveal");
   const heroImg = document.querySelector(".hero-media img");
-  const whoMosaic = document.querySelector(".who-mosaic");
+  const whoMosaics = document.querySelectorAll(".who-mosaic");
 
   const onScroll = () => {
     if (!header) return;
@@ -13,17 +13,6 @@
 
     if (heroImg && window.scrollY < window.innerHeight) {
       heroImg.style.transform = `scale(${1.1 - Math.min(window.scrollY / window.innerHeight, 1) * 0.06}) translateY(${window.scrollY * 0.18}px)`;
-    }
-
-    // Soft parallax on mosaic center image
-    if (whoMosaic && whoMosaic.classList.contains("is-live")) {
-      const tall = whoMosaic.querySelector(".who-photo-tall img");
-      if (tall) {
-        const rect = whoMosaic.getBoundingClientRect();
-        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-        const shift = Math.max(-18, Math.min(18, (progress - 0.5) * 36));
-        tall.style.transform = `scale(1.08) translateY(${shift}px)`;
-      }
     }
   };
 
@@ -73,22 +62,22 @@
     );
     reveals.forEach((el) => revealObserver.observe(el));
 
-    if (whoMosaic) {
+    if (whoMosaics.length) {
       const mosaicObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) return;
-            whoMosaic.classList.add("is-live");
-            mosaicObserver.unobserve(whoMosaic);
+            entry.target.classList.add("is-live");
+            mosaicObserver.unobserve(entry.target);
           });
         },
         { threshold: 0.18 }
       );
-      mosaicObserver.observe(whoMosaic);
+      whoMosaics.forEach((section) => mosaicObserver.observe(section));
     }
   } else {
     reveals.forEach((el) => el.classList.add("visible"));
-    if (whoMosaic) whoMosaic.classList.add("is-live");
+    whoMosaics.forEach((section) => section.classList.add("is-live"));
   }
 
   const form = document.querySelector(".contact-form");
