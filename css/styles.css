@@ -4547,6 +4547,12 @@ button {
     order: 6;
   }
 
+  /* Hide trailing mosaic pair on small screens */
+  .who-panel-outline,
+  .who-photo-tr {
+    display: none;
+  }
+
   .who-photo-tl,
   .who-photo-tr,
   .who-photo-center,
