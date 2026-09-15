@@ -4547,7 +4547,9 @@ button {
     order: 6;
   }
 
-  /* Hide trailing mosaic pair on small screens */
+  /* Hide trailing mosaic tiles on small screens */
+  .who-panel-fill,
+  .who-photo-center,
   .who-panel-outline,
   .who-photo-tr {
     display: none;
