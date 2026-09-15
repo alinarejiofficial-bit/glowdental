@@ -3074,6 +3074,10 @@ button {
     linear-gradient(180deg, #eef7f5 0%, var(--paper) 55%, #f4f8f7 100%);
 }
 
+.home-contact-head {
+  display: none;
+}
+
 .home-contact-panel {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
@@ -4661,6 +4665,27 @@ button {
   .home-contact-form,
   .location-details {
     padding: 1.75rem 1.35rem;
+  }
+
+  .home-contact-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 auto 1.5rem;
+    max-width: 28rem;
+  }
+
+  .home-contact-head .eyebrow {
+    justify-content: center;
+  }
+
+  .home-contact-head .section-title {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: clamp(1.85rem, 8vw, 2.4rem);
+    letter-spacing: -0.035em;
+    margin: 0;
   }
 
   .home-contact-form .btn,
